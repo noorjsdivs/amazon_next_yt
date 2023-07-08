@@ -1,12 +1,19 @@
 import Banner from "@/components/Banner";
 import Products from "@/components/Products";
 import { ProductProps } from "../../type";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { setAllProducts } from "@/store/nextSlice";
 
 interface Props {
   productData: ProductProps;
 }
 
 export default function Home({ productData }: Props) {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(setAllProducts({ allProducts: productData }));
+  }, [productData]);
   return (
     <main>
       <div className="max-w-screen-2xl mx-auto">
